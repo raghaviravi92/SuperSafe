@@ -7,5 +7,4 @@ Team Members:
 1. Raghavi Ravi	
 2. Kemper Schlaak
 3. David Fwamba	
-4. MD Rashed	
-5. Dario Borrelli
+4. Dario Borrelli
