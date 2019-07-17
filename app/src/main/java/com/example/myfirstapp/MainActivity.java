@@ -1,18 +1,22 @@
 package com.example.myfirstapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
-
 public class MainActivity extends AppCompatActivity {
 
+    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +43,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mainToolbar.setTitle("SuperSafe");
         setSupportActionBar(mainToolbar);
+        mainToolbar.setSubtitle("A single click safety solution");
+
     }
+    /** Called when the user taps the Settings button */
+    public void configureSetting(MenuItem view) {
+        Intent intent = new Intent(this, DatabaseMainActivity.class);
+        //EditText editText = (EditText) findViewById(R.id.editText);
+        String message = "Hello World";
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
