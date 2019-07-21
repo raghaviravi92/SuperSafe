@@ -3,5 +3,6 @@
     <string name="edit_message">Enter a message</string>
     <string name="edit_name">Enter Contact Name</string>
     <string name="edit_number">Enter Contact Number</string>
+    <string name="title_activity_location_information">LocationInformation</string>
 
 </resources>

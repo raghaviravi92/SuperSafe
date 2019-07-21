@@ -10,6 +10,13 @@
         android:orderInCategory="100"
         android:title="Refresh"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/map"
+        android:icon="@drawable/map_icon"
+        android:onClick="configureMap"
+        android:orderInCategory="100"
+        android:title="Refresh"
+        app:showAsAction="always" />
 
 
 </menu>
