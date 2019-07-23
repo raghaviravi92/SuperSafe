@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -15,6 +16,8 @@ import android.provider.Settings;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
+
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -44,6 +47,7 @@ public class LocationInformation extends AppCompatActivity implements GoogleApiC
     private GoogleApiClient mGoogleApiClient;
     private Location mLocation;
     private LocationManager mLocationManager;
+    private static final int PERMISSION_REQUEST_CODE = 1;
 
     private LocationRequest mLocationRequest;
     private com.google.android.gms.location.LocationListener listener;
@@ -188,11 +192,20 @@ public class LocationInformation extends AppCompatActivity implements GoogleApiC
         if(android.os.Build.MANUFACTURER.equalsIgnoreCase("Samsung")){
             separator = ", ";
         }
-        if(mAddressTextView.getText() != null && ii == 1) {
+        if(mAddressTextView.getText() != null && ii < 3) {
             try {
                 String get_addr = mAddressTextView.getText().toString();
 
-                sendSMS("4707077609", "This is test message");
+                Cursor contact_list = new DatabaseHelper(this).getData();
+                ArrayList<String> listContacts = new ArrayList<>();
+                while( contact_list.moveToNext()){
+                    //get the value from the database in column 1
+                    //then add it to the ArrayList
+                    listContacts.add(contact_list.getString(1).split(":")[1].substring(1));
+                }
+                for(String ph : listContacts){
+                    sendSMS(ph, get_addr);
+                }
                 ii = ii + 1;
 
             } catch (Exception e) {
@@ -207,6 +220,9 @@ public class LocationInformation extends AppCompatActivity implements GoogleApiC
      * BroadcastReceiver mBrSend; BroadcastReceiver mBrReceive;
      */
     private void sendSMS(String phoneNumber, String message) {
+        ActivityCompat.requestPermissions(LocationInformation.this,
+                new String[]{Manifest.permission.READ_PHONE_STATE},
+                1);
         ArrayList<PendingIntent> sentPendingIntents = new ArrayList<PendingIntent>();
         ArrayList<PendingIntent> deliveredPendingIntents = new ArrayList<PendingIntent>();
         PendingIntent sentPI = PendingIntent.getBroadcast(LocationInformation.this, 0,
@@ -228,6 +244,11 @@ public class LocationInformation extends AppCompatActivity implements GoogleApiC
             e.printStackTrace();
             Toast.makeText(getBaseContext(), "SMS sending failed...",Toast.LENGTH_SHORT).show();
         }
+
+    }
+
+    private void requestPermission() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, PERMISSION_REQUEST_CODE);
 
     }
     public String getLocation_info() {

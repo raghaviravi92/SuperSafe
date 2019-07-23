@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(EXTRA_MESSAGE, message);
                 startActivity(intent);
                 Toast.makeText(MainActivity.this, "Click", Toast.LENGTH_SHORT).show();
-                startRecorder(v);
+                //startRecorder(v);
 
             }
         });
