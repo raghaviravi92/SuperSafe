@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "792810488304",
+    "firebase_url": "https://supersafedb.firebaseio.com",
+    "project_id": "supersafedb",
+    "storage_bucket": "supersafedb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792810488304:android:0cd99eb7857a29ac",
+        "android_client_info": {
+          "package_name": "com.supersafemain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "792810488304-1d06m7rs1f8dhedjpoeo8itv6mrhieto.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGlxXxetOf44VYLiJ2mCrp_Iu5gf6Zdkk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "792810488304-1d06m7rs1f8dhedjpoeo8itv6mrhieto.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
